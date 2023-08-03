@@ -1,0 +1,41 @@
+/* Create table about the people and what they do here */
+CREATE TABLE singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+    
+INSERT INTO singers (name, age) VALUES ("Beyonce Knowles-Carter",41);
+INSERT INTO singers (name, age) VALUES ("Bruno Mars", 37);
+INSERT INTO singers (name, age) VALUES ("Ed Sheeran", 32);
+INSERT INTO singers (name, age) VALUES ("Snoop Dogg", 51);
+INSERT INTO singers (name, age) VALUES ("Luke Bryan", 47);
+INSERT INTO singers (name, age) VALUES ("Post Malone", 28);
+
+CREATE table songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    singers_id INTEGER,
+    title TEXT,
+    year_released INTEGER);
+    
+INSERT INTO songs (singers_id, title, year_released) VALUES (1, "Cuff It", 2002);
+INSERT INTO songs (singers_id, title, year_released) VALUES (1, "Single Ladies", 2008);
+INSERT INTO songs (singers_id, title, year_released) VALUES (2, "Treasure", 2012);
+INSERT INTO songs (singers_id, title, year_released) VALUES (3, "Shape of You", 2017);
+INSERT INTO songs (singers_id, title, year_released) VALUES (3, "Eyes Closed", 2023);
+INSERT INTO songs (singers_id, title, year_released) VALUES (4, "Gin and Juice", 1993);
+INSERT INTO songs (singers_id, title, year_released) VALUES (4, "Bad Decisions", 2022);
+INSERT INTO songs (singers_id, title, year_released) VALUES (5, "Where the Country Girls At", 2021);
+INSERT INTO songs (singers_id, title, year_released) VALUES (6, "Better Now", 2018);
+INSERT INTO songs (singers_id, title, year_released) VALUES (6, "Rockstar", 2018);
+
+SELECT singers.name, songs.title FROM singers
+JOIN songs
+ON singers.id=songs.singers_id;
+
+SELECT name,age FROM singers
+ORDER by age;
+
+SELECT singers.name, songs.title, songs.year_released FROM singers
+JOIN songs
+on singers.id=songs.singers_id
+WHERE year_released > 2010 ORDER by year_released desc;
