@@ -1,0 +1,40 @@
+# For this project, I downloaded a database and performed analytics on the data using SQL. 
+
+#Show Customers (full name, custmer ID, and country) who are not in the USA.
+SELECT FirstName, LastName, CustomerId, Country
+FROM chinook.customers
+WHERE Country <> "USA"
+
+#Show only customers from Brazil.
+SELECT * FROM chinook.customers
+WHERE Country = "Brazil"
+
+#Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+SELECT c.FirstName, c.LastName, i.InvoiceId, i.InvoiceDate, i.BillingCountry
+FROM chinook.customers AS c
+JOIN chinook.invoices AS i 
+ON c.CustomerId = i.CustomerId
+WHERE c.Country = "Brazil"
+
+#Show the Employees who are Sales Agents.
+SELECT * from chinook.employees 
+WHERE Title = "Sales Support Agent"
+
+#Find a unique/distinct list of billing countries from the Invoice table.
+SELECT distinct BillingCountry FROM chinook.invoices
+ORDER BY BillingCountry
+
+#Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+SELECT e.FirstName, e.LastName, i.InvoiceId FROM chinook.employees AS e
+JOIN chinook.customers AS c
+ON e.EmployeeId = c.CustomerId
+JOIN chinook.invoices as i
+ON c.CustomerId = i.CustomerId
+
+#How many Invoices were there in 2009?
+SELECT count(*) FROM chinook.invoices
+WHERE InvoiceDate LIKE "%2009%"
+
+#What are the total sales for 2009?
+SELECT sum(Total) FROM chinook.invoices
+WHERE InvoiceDate LIKE "%2009%"
